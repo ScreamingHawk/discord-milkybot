@@ -13,7 +13,7 @@ module.exports = (discord) => {
 	discord.setCommand(/(?:^call )(\S*) (.*)/, msg => {
 		let who = msg.matches[1]
 		if (who.match(/^me$/i)){
-			who = "You're"
+			who = `<@!${msg.author.id}>, you are`
 		} else if (who.match(/^you/i) || who.match(/^milky/i) || 
 				who.match(new RegExp(`${msg.client.user.id}`)) ||
 				who.match(/172630139878768640/)){
