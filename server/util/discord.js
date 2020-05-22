@@ -24,17 +24,22 @@ discord.setCommand = (command, func) => {
 			// Ignore myself
 			return
 		}
+		const isDm = msg.channel.type === "dm"
 		// Content without tag
-		const c = msg.content.replace(new RegExp(`<@!${msg.client.user.id}>`), '').trim()
+		let c = msg.content
+		if (!isDm){
+			c = c.replace(new RegExp(`<@!${msg.client.user.id}>`), '').trim()
+		}
 		const firstMention = msg.mentions.users.first()
 		// Runs if the first mention is the bot and the command matches (or command is regex already)
 		const commandMatcher = command instanceof String ? new RegExp(`^${command.toLowerCase()}`, 'i') : command
-		if (firstMention &&
-				firstMention.id === msg.client.user.id &&
-				c.match(commandMatcher)){
+		const matches = c.match(commandMatcher)
+		if (matches && 
+				(isDm || (firstMention && firstMention.id === msg.client.user.id))){
 			// Remove command and add to message
 			log.debug(`Running ${command}`)
 			msg.contentWithoutCommand = c.replace(commandMatcher, '').trim()
+			msg.matches = matches
 			func(msg)
 		}
 	})
