@@ -27,11 +27,14 @@ discord.setCommand = (command, func) => {
 		// Content without tag
 		const c = msg.content.replace(new RegExp(`<@!${msg.client.user.id}>`), '').trim()
 		const firstMention = msg.mentions.users.first()
-		log.info(c)
 		// Runs if the first mention is the bot and the command matches
+		const commandMatcher = new RegExp(`^${command.toLowerCase()}`, 'i')
 		if (firstMention &&
 				firstMention.id === msg.client.user.id &&
-				c.match(new RegExp(`^${command.toLowerCase()}`, 'i'))){
+				c.match(commandMatcher)){
+			// Remove command and add to message
+			log.debug(`Running ${command}`)
+			msg.contentWithoutCommand = c.replace(commandMatcher, '').trim()
 			func(msg)
 		}
 	})

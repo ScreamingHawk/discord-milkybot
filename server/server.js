@@ -27,9 +27,9 @@ app.get('*', (req, res)=>{
 
 // Log in
 discord.initialise(() => {
+	require('./commands')(discord)
 	io.on('connection', socket => {
-		require('./routes/data')(io, socket, discord)
-		require('./routes/control')(io, socket, discord)
+		require('./routes')(io, socket, discord)
 	})
 	
 	// Start up server
