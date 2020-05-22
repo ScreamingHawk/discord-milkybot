@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 import socket from '../global/socket'
 
 import Button from './base/Button'
 import Input from './base/Input'
+import Dropdown from './base/Dropdown'
 
 const StyledSendMessage = styled.div`
 	width: 100%
@@ -31,7 +32,17 @@ const StyledSending = styled.span`
 const SendMessage = () => {
 	const [loaded, setLoaded] = useState(true)
 	const [channel, setChannel] = useState("")
+	const [channelList, setChannelList] = useState([])
 	const [message, setMessage] = useState("")
+
+	useEffect(() => {
+		socket.on('data is', d => {
+			setChannelList(d.channels.sort((a, b) => a.value > b.value))
+		})
+		return () => {
+			socket.off('data is')
+		}
+	})
 
 	const handleSubmit = e => {
 		if (e){
@@ -54,9 +65,8 @@ const SendMessage = () => {
 		<StyledSendMessage>
 			{loaded ? (
 				<StyledForm onSubmit={handleSubmit}>
-					<Input
-						value={channel}
-						placeholder="Discord Channel Id"
+					<Dropdown
+						options={channelList}
 						onChange={e => setChannel(e.target.value)} />
 					<Input
 						value={message}

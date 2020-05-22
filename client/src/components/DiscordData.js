@@ -10,6 +10,9 @@ const DiscordData = () => {
 	useEffect(() => {
 		socket.on('data is', d => {
 			console.log(d)
+			d = d.guilds.map(g => (
+				g.channels.filter(c => c.type === "text").map(c => ({key: c.id, value: `${g.name} - ${c.name}`}))
+			)).reduce((a, b) => a.concat(b), [])
 			setDiscordData(d)
 		})
 		return () => {
