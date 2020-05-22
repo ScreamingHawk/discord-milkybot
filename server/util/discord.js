@@ -21,7 +21,7 @@ discord.initialise = next => {
 discord.setCommand = (command, func) => {
 	discord.on('message', msg => {
 		if (msg.author.id === discord.user.id){
-			log.debug('Ignoring myself')
+			// Ignore myself
 			return
 		}
 		// Content without tag
