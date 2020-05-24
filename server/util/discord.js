@@ -8,7 +8,9 @@ const discordToken = process.env.DISCORD_TOKEN
 discord.initialise = next => {
 	discord.on('ready', () => {
 		log.info('Discord login successful!')
-		next()
+		if (next){
+			next()
+		}
 	})
 	discord.login(discordToken)
 	// Set good morning command
