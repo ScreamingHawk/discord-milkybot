@@ -2,7 +2,62 @@
 
 This is (part of) the source code for MilkyBot, a discord bot that does a bunch of stuff.
 
-## Usage
+## Commands
+
+Below is a list of commands with examples.
+
+### Awake Check
+
+```
+You awake?
+```
+
+Replies with `Yup` if the bot is active.
+
+### Say Something
+
+```
+Say I am a robot
+```
+
+Replies with what you told it to say.
+
+### Greetings
+
+```
+Hello
+Hi
+Sup
+Greetings
+```
+
+Replies to greetings with a friendly hello.
+
+### Politeness Check
+
+```
+please
+```
+
+To avoid people adding please (which breaks commands) the bot reminds them not to use it.
+
+### Call Names
+
+```
+call person silly
+```
+
+Responds saying that person is silly.
+
+### Civ Down
+
+```
+Civ servers still down?
+```
+
+Checks downdetector to see if Civ servers are down or not.
+
+## Dev Usage
 
 Do the following.
 
