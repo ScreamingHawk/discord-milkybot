@@ -13,6 +13,10 @@ module.exports = (discord) => {
 	discord.setCommand(/^(hi|hello|sup|greetings)$/, msg => {
 		msg.channel.send(`Hello <@!${msg.author.id}>!`)
 	})
+	// Politeness breaks commands
+	discord.setCommand(/p.ease/i, msg => {
+		msg.channel.send(`No need to be polite. I'm just a robot`)
+	})
 	// Echos at someone
 	discord.setCommand(/(?:^call )(\S*) (.*)/, msg => {
 		let who = msg.matches[1]
