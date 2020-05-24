@@ -9,6 +9,10 @@ module.exports = (discord) => {
 	discord.setCommand('say', msg => {
 		msg.channel.send(`${msg.contentWithoutCommand}`)
 	})
+	// Replies to greetings
+	discord.setCommand(/^(hi|hello|sup|greetings)$/, msg => {
+		msg.channel.send(`Hello <@!${msg.author.id}>!`)
+	})
 	// Echos at someone
 	discord.setCommand(/(?:^call )(\S*) (.*)/, msg => {
 		let who = msg.matches[1]
