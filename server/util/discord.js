@@ -48,6 +48,10 @@ discord.setCommand = (command, func) => {
 	})
 }
 
+discord.getEmoji = name => (
+	discord.emojis.find(emoji => emoji.name === name)
+)
+
 if (!discordToken) {
 	// Spam this error to console
 	for (let i = 10; i --; ) log.error('NO DISCORD TOKEN!!!')
