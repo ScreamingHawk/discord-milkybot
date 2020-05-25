@@ -3,7 +3,7 @@ const log = require('../util/logger')
 module.exports = (discord) => {
 	// Responds yes
 	discord.setCommand(/you (awake|up)/i, msg => {
-		msg.channel.send(`Yup`)
+		msg.channel.send(`Yup :wink:`)
 	})
 	// Echos the text
 	discord.setCommand('say', msg => {
@@ -15,7 +15,7 @@ module.exports = (discord) => {
 	})
 	// Politeness breaks commands
 	discord.setCommand(/p.ease/i, msg => {
-		msg.channel.send(`No need to be polite. I'm just a robot`)
+		msg.channel.send(`No need to be polite. I'm just a robot :robot:`)
 	})
 	// Echos at someone
 	discord.setCommand(/(?:^call )(\S*) (.*)/, msg => {
@@ -26,6 +26,7 @@ module.exports = (discord) => {
 				who.match(new RegExp(`${msg.client.user.id}`)) ||
 				who.match(/172630139878768640/)){
 			// Some people are immune
+			msg.react('🖕')
 			msg.channel.send(`No u`)
 			return
 		} else {
