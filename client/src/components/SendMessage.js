@@ -31,18 +31,26 @@ const StyledSending = styled.span`
 
 const SendMessage = () => {
 	const [loaded, setLoaded] = useState(true)
+	const [guildList, setGuildList] = useState([])
 	const [channel, setChannel] = useState("")
 	const [channelList, setChannelList] = useState([])
 	const [message, setMessage] = useState("")
 
 	useEffect(() => {
 		socket.on('data is', d => {
-			setChannelList(d.channels.sort((a, b) => a.value > b.value))
+			setGuildList(d.guilds.sort((a, b) => a.name > b.name))
 		})
 		return () => {
 			socket.off('data is')
 		}
 	})
+
+	const updateChannels = gid => {
+		setChannel("")
+		setChannelList(guildList.find(g => g.id === gid).channels
+				.filter(c => c.type === "text")
+				.sort((a, b) => a.name > b.name))
+	}
 
 	const handleSubmit = e => {
 		if (e){
@@ -57,7 +65,6 @@ const SendMessage = () => {
 			message,
 		})
 		setLoaded(true)
-		setChannel("")
 		setMessage("")
 	}
 
@@ -66,8 +73,13 @@ const SendMessage = () => {
 			{loaded ? (
 				<StyledForm onSubmit={handleSubmit}>
 					<Dropdown
-						options={channelList}
-						onChange={e => setChannel(e.target.value)} />
+						options={guildList}
+						onChange={e => updateChannels(e.target.value)} />
+					{ channelList && (
+						<Dropdown
+							options={channelList}
+							onChange={e => setChannel(e.target.value)} />
+					)}
 					<Input
 						value={message}
 						placeholder="Message"

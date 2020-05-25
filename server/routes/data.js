@@ -17,10 +17,6 @@ module.exports = (io, socket, discord) => {
 				bot: m.user.bot,
 			})),
 		}))
-	data.channels = data.guilds.map(g => (
-			g.channels.filter(c => c.type === "text")
-				.map(c => ({key: c.id, value: `${g.name} - ${c.name}`}))
-		)).reduce((a, b) => a.concat(b), [])
 	data.users = discord.users.filter(u => !u.bot)
 			.map(u => ({
 				key: u.id,

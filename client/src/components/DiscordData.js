@@ -23,7 +23,7 @@ const DiscordData = () => {
 	}
 
 	const shouldCollapse = field => {
-		return field.name === "channels"
+		return field.name === "channels" || field.name === "users"
 	}
 	return (
 		<ReactJson src={discordData} theme="monokai" iconStyle="triangle" displayDataTypes={false} displayObjectSize={false} shouldCollapse={shouldCollapse} />

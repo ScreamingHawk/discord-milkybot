@@ -14,9 +14,10 @@ const StyledSelect = styled.select`
 const Dropdown = props => {
 	return (
 		<StyledSelect onChange={props.onChange}>
-			{ props.options.map((o, i) => (
-				<option key={i} value={o.key}>
-					{o.value}
+			<option></option>
+			{ props.options && props.options.map((o, i) => (
+				<option key={i} value={o.id}>
+					{o.name}
 				</option>
 			))}
 		</StyledSelect>
