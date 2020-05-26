@@ -7,6 +7,7 @@ module.exports = (discord) => {
 	})
 	// Echos the text
 	discord.setCommand('say', msg => {
+		msg.delete()
 		msg.channel.send(`${msg.contentWithoutCommand}`)
 	})
 	// Replies to greetings
