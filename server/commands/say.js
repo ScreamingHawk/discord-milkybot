@@ -18,20 +18,20 @@ module.exports = (discord) => {
 		msg.channel.send(`No need to be polite. I'm just a robot :robot:`)
 	})
 	// Echos at someone
-	discord.setCommand(/(?:^call )(\S*) (.*)/, msg => {
+	discord.setCommand(/(?:^call )(\S*) (.*)/i, msg => {
 		let who = msg.matches[1]
 		if (who.match(/^me$/i)){
 			who = `<@!${msg.author.id}>, you are`
-		} else if (who.match(/^you/i) || who.match(/^milky/i) || 
+		} else if (who.match(/^you/i) || who.match(/^milky/i) ||
 				who.match(new RegExp(`${msg.client.user.id}`)) ||
 				who.match(/172630139878768640/)){
 			// Some people are immune
-			msg.react('🖕')
 			msg.channel.send(`No u`)
 			return
 		} else {
 			who = `${who} is`
 		}
+		msg.delete()
 		msg.channel.send(`${who} ${msg.matches[2]}`)
 	})
 }
