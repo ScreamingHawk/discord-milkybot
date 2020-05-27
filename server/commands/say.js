@@ -22,9 +22,9 @@ module.exports = (discord) => {
 	discord.setCommand(/(?:^tell )(\S*) (.*)/i, msg => {
 		let who = msg.matches[1]
 		if (who.match(/^me$/i)){
-			who = `<@!${msg.author.id}>, `
+			who = `<@!${msg.author.id}>,`
 		} else {
-			who = `${who}, `
+			who = `${who},`
 		}
 		msg.delete()
 		msg.channel.send(`${who} ${msg.matches[2]}`)
