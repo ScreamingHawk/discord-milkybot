@@ -18,6 +18,17 @@ module.exports = (discord) => {
 	discord.setCommand(/p.ease/i, msg => {
 		msg.channel.send(`No need to be polite. I'm just a robot :robot:`)
 	})
+	// Echos message at someone
+	discord.setCommand(/(?:^tell )(\S*) (.*)/i, msg => {
+		let who = msg.matches[1]
+		if (who.match(/^me$/i)){
+			who = `<@!${msg.author.id}>, `
+		} else {
+			who = `${who}, `
+		}
+		msg.delete()
+		msg.channel.send(`${who} ${msg.matches[2]}`)
+	})
 	// Echos at someone
 	discord.setCommand(/(?:^call )(\S*) (.*)/i, msg => {
 		let who = msg.matches[1]
