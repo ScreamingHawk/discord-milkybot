@@ -48,6 +48,13 @@ discord.setCommand = (command, func) => {
 	})
 }
 
+discord.safeDeleteMessage = msg => {
+	// Only delete if able
+	if (msg.channel.type !== "dm") {
+		msg.delete()
+	}
+}
+
 discord.getEmoji = name => (
 	discord.emojis.find(emoji => emoji.name === name)
 )

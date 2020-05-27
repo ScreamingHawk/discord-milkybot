@@ -7,7 +7,7 @@ module.exports = (discord) => {
 	})
 	// Echos the text
 	discord.setCommand('say', msg => {
-		msg.delete()
+		discord.safeDeleteMessage(msg)
 		msg.channel.send(`${msg.contentWithoutCommand}`)
 	})
 	// Replies to greetings
@@ -31,7 +31,7 @@ module.exports = (discord) => {
 			.replace(/\ss?he's\s/gi, "you're ")
 			.replace(/\ss?he\s/gi, "you ")
 			.trim()
-		msg.delete()
+		discord.safeDeleteMessage(msg)
 		msg.channel.send(`${who} ${comment}`)
 	})
 	// Echos at someone
@@ -48,7 +48,7 @@ module.exports = (discord) => {
 		} else {
 			who = `${who} is`
 		}
-		msg.delete()
+		discord.safeDeleteMessage(msg)
 		msg.channel.send(`${who} ${msg.matches[2]}`)
 	})
 }
