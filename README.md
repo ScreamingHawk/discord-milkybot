@@ -49,6 +49,14 @@ call person silly
 
 Responds saying that person is silly.
 
+### Tell Someone Something
+
+```
+tell person hello
+```
+
+Responds commenting to a person.
+
 ### Civ Down
 
 ```
