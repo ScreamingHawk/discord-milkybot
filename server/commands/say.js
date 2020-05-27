@@ -26,8 +26,13 @@ module.exports = (discord) => {
 		} else {
 			who = `${who},`
 		}
+		// Convert thrid to second person
+		let comment = ` ${msg.matches[2]}`
+			.replace(/\ss?he's\s/gi, "you're ")
+			.replace(/\ss?he\s/gi, "you ")
+			.trim()
 		msg.delete()
-		msg.channel.send(`${who} ${msg.matches[2]}`)
+		msg.channel.send(`${who} ${comment}`)
 	})
 	// Echos at someone
 	discord.setCommand(/(?:^call )(\S*) (.*)/i, msg => {
