@@ -12,7 +12,7 @@ module.exports = (discord) => {
 		msg.channel.send(`${msg.contentWithoutCommand}`)
 	})
 	// Replies to greetings
-	discord.setCommand(/^(hi|he.lo|sup|greetings)$/, msg => {
+	discord.setCommand(/^(hi|he.lo|sup|greetings)$/i, msg => {
 		msg.channel.send(`Hello <@!${msg.author.id}>! ${emoji.wave}`)
 	})
 	// Politeness breaks commands
