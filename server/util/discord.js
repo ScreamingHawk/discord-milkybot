@@ -30,13 +30,13 @@ discord.setCommand = (command, func) => {
 		// Content without tag
 		let c = msg.content
 		if (!isDm){
-			c = c.replace(new RegExp(`<@!${msg.client.user.id}>`), '')
+			c = c.replace(new RegExp(`<@${msg.client.user.id}>`), '')
 		}
-		c= c.trim()
+		c = c.trim()
 		const firstMention = msg.mentions.users.first()
 		// Runs if the first mention is the bot and the command matches (or command is regex already)
 		const commandMatcher = command instanceof String ? new RegExp(`^${command.toLowerCase()}`, 'i') : command
-		const matches = c.toLowerCase().match(commandMatcher)
+		const matches = c.match(commandMatcher)
 		if (matches && 
 				(isDm || (firstMention && firstMention.id === msg.client.user.id))){
 			if (matches.length > 1){
