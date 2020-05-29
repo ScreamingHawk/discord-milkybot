@@ -39,8 +39,13 @@ discord.setCommand = (command, func) => {
 		const matches = c.toLowerCase().match(commandMatcher)
 		if (matches && 
 				(isDm || (firstMention && firstMention.id === msg.client.user.id))){
+			if (matches.length > 1){
+				const [, ...args] = matches
+				log.debug(`Running ${command} with "${args.join('", "')}"`)
+			} else {
+				log.debug(`Running ${command}`)
+			}
 			// Remove command and add to message
-			log.debug(`Running ${command}`)
 			msg.contentWithoutCommand = c.replace(commandMatcher, '').trim()
 			msg.matches = matches
 			func(msg)
