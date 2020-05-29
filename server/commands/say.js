@@ -28,10 +28,10 @@ module.exports = (discord) => {
 		}
 		let comment = ` ${msg.matches[2]}`
 			// Convert thrid to second person
-			.replace(/\ss?he's\s/gi, " you're ")
-			.replace(/\ss?he\s/gi, " you ")
+			.replace(/\s\S?he'?s\s/gi, " you're ")
+			.replace(/\s\S?he\s/gi, " you ")
 			// Convert first to second person
-			.replace(/\sI'm\s/gi, " you're ")
+			.replace(/\sI'?m\s/gi, " you're ")
 			.replace(/\sI\s/gi, " you ")
 			.trim()
 		discord.safeDeleteMessage(msg)
