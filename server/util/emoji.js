@@ -11,5 +11,6 @@ module.exports = {
 	wave: '👋',
 	eggplant: '🍆',
 	relief: '😌',
+	drool: '🤤',
 	number: num => numbers[num - 1],
 }

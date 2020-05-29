@@ -26,6 +26,7 @@ module.exports = (discord) => {
 			msg.channel.send(`I'm not posting lewds in a SFW channel...`)
 			return
 		}
+		msg.react(emoji.drool)
 		let tags = ''
 		if (msg.matches.length > 1 && msg.matches[1]){
 			tags = `&tags=${msg.matches[1]}`
@@ -36,11 +37,11 @@ module.exports = (discord) => {
 				.then(items => items.filter(p => p.rating !== "s")) // Only lewd
 				.then(items => items[Math.floor(Math.random()*items.length)]) // Pick one at random
 				.then(lewd => {
-					msg.channel.send(`I hope you like it ${lewd.file_url}`)
+					msg.channel.send(lewd.file_url)
 				})
 				.catch(err => {
 					log.error(err)
-					msg.channel.send(`Something went wrong... :woman_shrugging:`)
+					msg.channel.send(`Something went wrong... ${emoji.shrug}`)
 				})
 	})
 }
