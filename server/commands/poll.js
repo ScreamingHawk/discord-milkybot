@@ -31,10 +31,10 @@ module.exports = (discord) => {
 					return
 				}
 				poll = formatQuestion(pollSplit[0]) +
-						answers.map((a, i) => `\n${emoji.number(i)}: ${format.upperFirst(a.trim())}`).join('')
+						answers.map((a, i) => `\n${emoji.number(i + 1)}: ${format.upperFirst(a.trim())}`).join('')
 				msg.channel.send("```" + poll + "```by " + msg.author).then(sent => {
 					answers.map((_, i) => {
-						sent.react(`${emoji.number(i)}`)
+						sent.react(`${emoji.number(i + 1)}`)
 					})
 					sent.react(emoji.shrug)
 				})
