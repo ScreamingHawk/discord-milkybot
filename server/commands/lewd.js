@@ -1,6 +1,7 @@
 const fetch = require('node-fetch')
 
 const log = require('../util/logger')
+const emoji = require('../util/emoji')
 
 let turnedOn = false
 
@@ -8,12 +9,12 @@ module.exports = (discord) => {
 	// Enables these commands
 	discord.setCommand(/^turn.* on.*$/, msg => {
 		turnedOn = true
-		msg.react('🍆')
+		msg.react(emoji.eggplant)
 	})
 	// Disables these commands
 	discord.setCommand(/^turn.* off.*$/, msg => {
 		turnedOn = false
-		msg.react('😌')
+		msg.react(emoji.relief)
 	})
 	// Posts a random lewd
 	discord.setCommand(/(?:hentai|lewds?)\s?(\S*)/, msg => {

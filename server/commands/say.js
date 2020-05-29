@@ -1,9 +1,10 @@
 const log = require('../util/logger')
+const emoji = require('../util/emoji')
 
 module.exports = (discord) => {
 	// Responds yes
 	discord.setCommand(/you (awake|up)/i, msg => {
-		msg.channel.send(`Yup :wink:`)
+		msg.channel.send(`Yup ${emoji.wink}`)
 	})
 	// Echos the text
 	discord.setCommand('say', msg => {
@@ -12,11 +13,11 @@ module.exports = (discord) => {
 	})
 	// Replies to greetings
 	discord.setCommand(/^(hi|he.lo|sup|greetings)$/, msg => {
-		msg.channel.send(`Hello <@!${msg.author.id}>! :wave:`)
+		msg.channel.send(`Hello <@!${msg.author.id}>! ${emoji.wave}`)
 	})
 	// Politeness breaks commands
 	discord.setCommand(/p.ease/i, msg => {
-		msg.channel.send(`No need to be polite. I'm just a robot :robot:`)
+		msg.channel.send(`No need to be polite. I'm just a robot ${emoji.robot}`)
 	})
 	// Echos message at someone
 	discord.setCommand(/(?:^tell )(\S*) (.*)/i, msg => {

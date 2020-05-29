@@ -2,6 +2,7 @@ const fetch = require('node-fetch')
 const cheerio = require('cheerio')
 
 const log = require('../util/logger')
+const emoji = require('../util/emoji')
 
 module.exports = (discord) => {
 	// Check civ server status
@@ -14,14 +15,14 @@ module.exports = (discord) => {
 				.then(up => {
 					log.debug(`Down Detector says servers are ${up ? 'up' : 'down'}`)
 					if (up){
-						msg.channel.send('Down Detector says Civ servers are up!!! :tada:')
+						msg.channel.send(`Down Detector says Civ servers are up!!! ${emoji.tada}`)
 					} else {
-						msg.channel.send('Civilization servers are still having problems... :sob:')
+						msg.channel.send(`Civilization servers are still having problems... ${emoji.sob}`)
 					}
 				})
 				.catch(err => {
 					log.error(err)
-					msg.channel.send(`Something went wrong... :woman_shrugging:`)
+					msg.channel.send(`Something went wrong... ${emoji.shrug}`)
 				})
 	})
 }

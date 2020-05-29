@@ -1,5 +1,6 @@
 const log = require('../util/logger')
 const format = require('../util/format')
+const emoji = require('../util/emoji')
 
 const formatQuestion = q => {
 	q = format.upperFirst(q.trim())
@@ -8,8 +9,6 @@ const formatQuestion = q => {
 	}
 	return q
 }
-
-const pollReacts = "1⃣ 2⃣ 3⃣ 4⃣ 5⃣ 6⃣ 7⃣ 8⃣ 9⃣ 🔟".split(' ')
 
 module.exports = (discord) => {
 	// Creates a poll
@@ -32,12 +31,12 @@ module.exports = (discord) => {
 					return
 				}
 				poll = formatQuestion(pollSplit[0]) +
-						answers.map((a, i) => `\n${pollReacts[i]}: ${format.upperFirst(a.trim())}`).join('')
+						answers.map((a, i) => `\n${emoji.number(i)}: ${format.upperFirst(a.trim())}`).join('')
 				msg.channel.send("```" + poll + "```by " + msg.author).then(sent => {
 					answers.map((_, i) => {
-						sent.react(`${pollReacts[i]}`)
+						sent.react(`${emoji.number(i)}`)
 					})
-					sent.react("🤷‍♀️")
+					sent.react(emoji.shrug)
 				})
 				return
 			}
@@ -45,9 +44,9 @@ module.exports = (discord) => {
 		// Single choice
 		discord.safeDeleteMessage(msg)
 		msg.channel.send("```" + formatQuestion(poll) + "```by " + msg.author).then(sent => {
-			sent.react("👍")
-			sent.react("👎")
-			sent.react("🤷‍♀️")
+			sent.react(emoji.thumbsUp)
+			sent.react(emoji.thumbsDown)
+			sent.react(emoji.shrug)
 		})
 	})
 }
