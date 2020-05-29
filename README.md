@@ -57,6 +57,14 @@ tell person hello
 
 Responds commenting to a person.
 
+### Poll
+
+```
+poll Question? Answer 1, Answer 2
+```
+
+Create a poll, supporting up to 10 answers.
+
 ### Civ Down
 
 ```
