@@ -1,17 +1,22 @@
 const numbers = '1⃣ 2⃣ 3⃣ 4⃣ 5⃣ 6⃣ 7⃣ 8⃣ 9⃣ 🔟'.split(' ')
 
 module.exports = {
-	shrug: '🤷‍♀️',
-	thumbsUp: '👍',
+	// Hands
 	thumbsDown: '👎',
-	robot: '🤖',
-	tada: '🎉',
+	thumbsUp: '👍',
+	wave: '👋',
+	// Faces
+	drool: '🤤',
+	relief: '😌',
 	sob: '😭',
 	wink: '😉',
-	wave: '👋',
+	// Actions
+	shrug: '🤷‍♀️',
+	// Things
 	eggplant: '🍆',
-	relief: '😌',
-	drool: '🤤',
 	poop: '💩',
+	robot: '🤖',
+	tada: '🎉',
+	// Misc
 	number: num => numbers[num - 1],
 }
