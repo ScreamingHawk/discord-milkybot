@@ -8,9 +8,9 @@ module.exports = (discord) => {
 	})
 	// Echos the text
 	discord.addHelp('say', '**Make me say something**\n```say Hello! ' + emoji.wave + '```')
-	discord.setCommand('say', msg => {
+	discord.setCommand(/^say (.*)/i, msg => {
 		discord.safeDeleteMessage(msg)
-		msg.channel.send(`${msg.contentWithoutCommand}`)
+		msg.channel.send(`${msg.match[1]}`)
 	})
 	// Replies to greetings
 	discord.setCommand(/^(hi|he.lo|sup|greetings)$/i, msg => {
@@ -23,7 +23,7 @@ module.exports = (discord) => {
 	})
 	// Echos message at someone
 	discord.addHelp('tell', "**Make me talk to someone**\n```tell Gecko he's gay```He is tho")
-	discord.setCommand(/(?:^tell )(\S*) (.*)/i, msg => {
+	discord.setCommand(/^tell (\S*) (.*)/i, msg => {
 		let who = msg.matches[1]
 		if (who.match(/^me$/i)){
 			who = `<@!${msg.author.id}>,`
@@ -42,7 +42,7 @@ module.exports = (discord) => {
 		msg.channel.send(`${who} ${comment}`)
 	})
 	// Echos at someone
-	discord.addHelp('tell', "**Make me call someone names**\n```call Gecko gay```Coz he is")
+	discord.addHelp('call', "**Make me call someone names**\n```call Gecko gay```Coz he is")
 	discord.setCommand(/(?:^call )(\S*) (.*)/i, msg => {
 		let who = msg.matches[1]
 		if (who.match(/^me$/i)){
