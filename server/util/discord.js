@@ -6,6 +6,8 @@ const emoji = require('../util/emoji')
 
 const discordToken = process.env.DISCORD_TOKEN
 
+const helpCommands = {}
+
 discord.initialise = next => {
 	discord.on('ready', () => {
 		log.info('Discord login successful!')
@@ -18,6 +20,19 @@ discord.initialise = next => {
 	discord.setCommand('morning', msg => {
 		msg.channel.send(`Morning <@${msg.author.id}>!`)
 	})
+	discord.setCommand(/^help ?(.*)/i, msg => {
+		// Help commands
+		let help = helpCommands[msg.matches[1]]
+		if (!help){
+			help = "Here's what I can do: `" + Object.keys(helpCommands).join('`, `') +
+					"`\nType `help <command>` for more information"
+		}
+		msg.channel.send(help)
+	})
+}
+
+discord.addHelp = (command, message) => {
+	helpCommands[command] = message
 }
 
 // Helper for setting up commands

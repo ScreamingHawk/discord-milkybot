@@ -8,6 +8,7 @@ let turnedOn = false
 module.exports = (discord) => {
 	// Enables these commands
 	discord.setCommand(/^turn.* on.*$/i, msg => {
+		discord.addHelp('lewd', "**Request lewds**\n```lewd neko```Only works in NSFW channels and only when I'm turned on "+ emoji.eggplant)
 		turnedOn = true
 		msg.react(emoji.eggplant)
 	})

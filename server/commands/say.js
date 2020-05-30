@@ -7,6 +7,7 @@ module.exports = (discord) => {
 		msg.channel.send(`Yup ${emoji.wink}`)
 	})
 	// Echos the text
+	discord.addHelp('say', '**Make me say something**\n```say Hello! ' + emoji.wave + '```')
 	discord.setCommand('say', msg => {
 		discord.safeDeleteMessage(msg)
 		msg.channel.send(`${msg.contentWithoutCommand}`)
@@ -16,10 +17,12 @@ module.exports = (discord) => {
 		msg.channel.send(`Hello <@!${msg.author.id}>! ${emoji.wave}`)
 	})
 	// Politeness breaks commands
+	discord.addHelp('please', "**Check your privilege**\n```please```\nYou don't need manners when talking to robots... " + emoji.robot)
 	discord.setCommand(/p.ease/i, msg => {
 		msg.channel.send(`No need to be polite. I'm just a robot ${emoji.robot}`)
 	})
 	// Echos message at someone
+	discord.addHelp('tell', "**Make me talk to someone**\n```tell Gecko he's gay```He is tho")
 	discord.setCommand(/(?:^tell )(\S*) (.*)/i, msg => {
 		let who = msg.matches[1]
 		if (who.match(/^me$/i)){
@@ -39,6 +42,7 @@ module.exports = (discord) => {
 		msg.channel.send(`${who} ${comment}`)
 	})
 	// Echos at someone
+	discord.addHelp('tell', "**Make me call someone names**\n```call Gecko gay```Coz he is")
 	discord.setCommand(/(?:^call )(\S*) (.*)/i, msg => {
 		let who = msg.matches[1]
 		if (who.match(/^me$/i)){

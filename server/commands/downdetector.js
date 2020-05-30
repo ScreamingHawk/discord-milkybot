@@ -6,6 +6,7 @@ const emoji = require('../util/emoji')
 
 module.exports = (discord) => {
 	// Check civ server status
+	discord.addHelp('civ down', "**Check Civ servers**\n```civ down?```Uses https://downdetector.com/status/civilization/ which isn't always accurate")
 	discord.setCommand(/civ.* (up|down)\??$/i, msg => {
 		log.debug('Checking if Civ is down...')
 		fetch('https://downdetector.com/status/civilization')

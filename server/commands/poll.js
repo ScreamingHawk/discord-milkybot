@@ -12,6 +12,7 @@ const formatQuestion = q => {
 
 module.exports = (discord) => {
 	// Creates a poll
+	discord.addHelp('poll', '**Creates a poll**\n```poll Your question? First answer, Another answer, Another```\nDelete a bad poll with a ' + emoji.poop)
 	discord.setCommand(/^poll (.*)/i, msg => {
 		let poll = msg.matches[1].trim()
 		let pollSplit = poll.split('?')
@@ -20,6 +21,9 @@ module.exports = (discord) => {
 			let answers = pollSplit[1].split('|')
 			if (answers.length < 2){
 				answers = pollSplit[1].split(',')
+			}
+			if (answers.length < 2){
+				answers = pollSplit[1].split('.')
 			}
 			if (answers.length < 2){
 				answers = pollSplit[1].split('/')
