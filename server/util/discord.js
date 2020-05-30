@@ -2,6 +2,7 @@ const discordjs = require('discord.js')
 const discord = new discordjs.Client()
 
 const log = require('../util/logger')
+const emoji = require('../util/emoji')
 
 const discordToken = process.env.DISCORD_TOKEN
 
@@ -58,6 +59,15 @@ discord.safeDeleteMessage = msg => {
 	if (msg.channel.type !== "dm") {
 		msg.delete()
 	}
+}
+
+// Listen for react to delete message
+discord.deletableMessage = message => {
+	const filter = (reaction, user) => reaction.emoji.name === emoji.poop && user.id !== message.author.id
+	message.awaitReactions(filter, { max: 1, time: 60000 })
+	.then(() => {
+		message.delete()
+	})
 }
 
 if (!discordToken) {

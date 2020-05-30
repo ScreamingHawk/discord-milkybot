@@ -37,7 +37,9 @@ module.exports = (discord) => {
 				.then(items => items.filter(p => p.rating !== "s")) // Only lewd
 				.then(items => items[Math.floor(Math.random()*items.length)]) // Pick one at random
 				.then(lewd => {
-					msg.channel.send(lewd.file_url)
+					msg.channel.send(lewd.file_url).then(sent => {
+						discord.deletableMessage(sent)
+					})
 				})
 				.catch(err => {
 					log.error(err)

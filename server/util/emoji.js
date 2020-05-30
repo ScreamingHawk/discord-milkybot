@@ -12,5 +12,6 @@ module.exports = {
 	eggplant: '🍆',
 	relief: '😌',
 	drool: '🤤',
+	poop: '💩',
 	number: num => numbers[num - 1],
 }
