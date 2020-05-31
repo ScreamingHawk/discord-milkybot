@@ -44,14 +44,10 @@ discord.initialise = next => {
 		}
 		c = c.trim()
 		const firstMention = msg.mentions.users.first()
-		if (!isDm && !(firstMention && firstMention.id === msg.client.user.id)){
-			// Not a bot request
-			return
-		}
+		const messageToBot = isDm || (firstMention && firstMention.id === msg.client.user.id)
 		for (let command of commands){
-			log.debug(command)
 			const matches = c.match(command.command)
-			if (matches){
+			if (matches && (messageToBot || command.options.noTagRequired)){
 				if (matches.length > 1){
 					const [, ...args] = matches
 					log.debug(`Running ${command.command} with "${args.join('", "')}"`)
@@ -71,8 +67,15 @@ discord.addHelp = (command, message) => {
 }
 
 // Helper for setting up commands
-discord.setCommand = (command, func) => {
-	commands.push({command, func})
+discord.setCommand = (command, options, func) => {
+	if (func === undefined){
+		// No options supplied. Default them
+		func = options
+		options = {
+			noTagRequired: false,
+		}
+	}
+	commands.push({command, options, func})
 }
 
 discord.safeDeleteMessage = msg => {
