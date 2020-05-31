@@ -4,6 +4,8 @@ const discord = new discordjs.Client()
 const log = require('../util/logger')
 const emoji = require('../util/emoji')
 
+const dataRoute = require('../routes/data')
+
 const discordToken = process.env.DISCORD_TOKEN
 
 const commands = []
@@ -53,6 +55,8 @@ discord.initialise = next => {
 				// Add matches for callback
 				msg.matches = matches
 				command.func(msg)
+				// Send command to the client
+				dataRoute.sendData(msg)
 			}
 		}
 	})

@@ -2,6 +2,6 @@ const log = require('../util/logger')
 
 module.exports = (io, socket, discord) => {
 	log.debug('Loading routes')
-	require('./data')(io, socket, discord)
-	require('./control')(io, socket, discord)
+	require('./data').init(io, socket, discord)
+	require('./control').init(io, socket, discord)
 }
