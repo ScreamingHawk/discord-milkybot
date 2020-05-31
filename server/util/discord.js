@@ -83,12 +83,15 @@ discord.safeDeleteMessage = msg => {
 
 // Listen for react to delete message
 discord.deletableMessage = message => {
+	message.react(emoji.poop)
 	const filter = (reaction, user) => reaction.emoji.name === emoji.poop && user.id !== message.author.id
-	message.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+	message.awaitReactions(filter, { max: 1, time: 10000, errors: ['time'] })
 	.then(collected => {
 		log.info(`Message deleted by ${collected.first().users.first().username}`)
 		message.delete()
-	}).catch(() => {})
+	}).catch(() => {
+		message.reactions.find(r => r.emoji.name === emoji.poop).remove()
+	})
 }
 
 if (!discordToken) {
