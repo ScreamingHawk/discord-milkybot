@@ -42,7 +42,6 @@ module.exports = (discord) => {
 					answers.map((_, i) => {
 						sent.react(`${emoji.number(i + 1)}`)
 					})
-					sent.react(emoji.shrug)
 				})
 				return
 			}
@@ -53,7 +52,6 @@ module.exports = (discord) => {
 			discord.deletableMessage(sent)
 			sent.react(emoji.thumbsUp)
 			sent.react(emoji.thumbsDown)
-			sent.react(emoji.shrug)
 		})
 	})
 }
