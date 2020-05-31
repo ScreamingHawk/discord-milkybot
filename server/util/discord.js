@@ -6,6 +6,7 @@ const emoji = require('../util/emoji')
 
 const discordToken = process.env.DISCORD_TOKEN
 
+const commands = []
 const helpCommands = {}
 
 discord.initialise = next => {
@@ -29,14 +30,7 @@ discord.initialise = next => {
 		}
 		msg.channel.send(help)
 	})
-}
 
-discord.addHelp = (command, message) => {
-	helpCommands[command] = message
-}
-
-// Helper for setting up commands
-discord.setCommand = (command, func) => {
 	discord.on('message', msg => {
 		if (msg.author.id === discord.user.id){
 			// Ignore myself
@@ -50,20 +44,35 @@ discord.setCommand = (command, func) => {
 		}
 		c = c.trim()
 		const firstMention = msg.mentions.users.first()
-		const matches = c.match(command)
-		if (matches && 
-				(isDm || (firstMention && firstMention.id === msg.client.user.id))){
-			if (matches.length > 1){
-				const [, ...args] = matches
-				log.debug(`Running ${command} with "${args.join('", "')}"`)
-			} else {
-				log.debug(`Running ${command}`)
+		if (!isDm && !(firstMention && firstMention.id === msg.client.user.id)){
+			// Not a bot request
+			return
+		}
+		for (let command of commands){
+			log.debug(command)
+			const matches = c.match(command.command)
+			if (matches){
+				if (matches.length > 1){
+					const [, ...args] = matches
+					log.debug(`Running ${command.command} with "${args.join('", "')}"`)
+				} else {
+					log.debug(`Running ${command.command}`)
+				}
+				// Add matches for callback
+				msg.matches = matches
+				command.func(msg)
 			}
-			// Add matches for callback
-			msg.matches = matches
-			func(msg)
 		}
 	})
+}
+
+discord.addHelp = (command, message) => {
+	helpCommands[command] = message
+}
+
+// Helper for setting up commands
+discord.setCommand = (command, func) => {
+	commands.push({command, func})
 }
 
 discord.safeDeleteMessage = msg => {
