@@ -17,12 +17,8 @@ discord.initialise = next => {
 		}
 	})
 	discord.login(discordToken)
-	// Set good morning command
-	discord.setCommand(/morning/i, msg => {
-		msg.channel.send(`Morning <@${msg.author.id}>!`)
-	})
+	// Help commands
 	discord.setCommand(/^help ?(.*)/i, msg => {
-		// Help commands
 		let help = helpCommands[msg.matches[1]]
 		if (!help){
 			help = "Here's what I can do: `" + Object.keys(helpCommands).join('`, `') +
