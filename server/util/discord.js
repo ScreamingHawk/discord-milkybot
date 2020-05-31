@@ -17,7 +17,7 @@ discord.initialise = next => {
 	})
 	discord.login(discordToken)
 	// Set good morning command
-	discord.setCommand('morning', msg => {
+	discord.setCommand(/morning/i, msg => {
 		msg.channel.send(`Morning <@${msg.author.id}>!`)
 	})
 	discord.setCommand(/^help ?(.*)/i, msg => {
@@ -50,9 +50,7 @@ discord.setCommand = (command, func) => {
 		}
 		c = c.trim()
 		const firstMention = msg.mentions.users.first()
-		// Runs if the first mention is the bot and the command matches (or command is regex already)
-		const commandMatcher = command instanceof String ? new RegExp(`^${command.toLowerCase()}`, 'i') : command
-		const matches = c.match(commandMatcher)
+		const matches = c.match(command)
 		if (matches && 
 				(isDm || (firstMention && firstMention.id === msg.client.user.id))){
 			if (matches.length > 1){
@@ -61,8 +59,7 @@ discord.setCommand = (command, func) => {
 			} else {
 				log.debug(`Running ${command}`)
 			}
-			// Remove command and add to message
-			msg.contentWithoutCommand = c.replace(commandMatcher, '').trim()
+			// Add matches for callback
 			msg.matches = matches
 			func(msg)
 		}
