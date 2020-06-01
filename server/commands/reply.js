@@ -6,7 +6,7 @@ module.exports = (discord) => {
 		msg.channel.send(`Yup ${emoji.wink}`)
 	})
 	// Replies to greetings
-	discord.setCommand(/^(hi|he.lo|sup|greetings)$/i, msg => {
+	discord.setCommand(/^(hi|he.lo|sup|greetings)/i, msg => {
 		msg.channel.send(`Hello <@!${msg.author.id}>! ${emoji.wave}`)
 	})
 	// Set good morning command
