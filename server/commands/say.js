@@ -2,24 +2,11 @@ const log = require('../util/logger')
 const emoji = require('../util/emoji')
 
 module.exports = (discord) => {
-	// Responds yes
-	discord.setCommand(/you (awake|up)/i, msg => {
-		msg.channel.send(`Yup ${emoji.wink}`)
-	})
 	// Echos the text
 	discord.addHelp('say', '**Make me say something**\n```say Hello! ' + emoji.wave + '```')
 	discord.setCommand(/^say (.*)/i, msg => {
 		discord.safeDeleteMessage(msg)
 		msg.channel.send(`${msg.match[1]}`)
-	})
-	// Replies to greetings
-	discord.setCommand(/^(hi|he.lo|sup|greetings)$/i, msg => {
-		msg.channel.send(`Hello <@!${msg.author.id}>! ${emoji.wave}`)
-	})
-	// Politeness breaks commands
-	discord.addHelp('please', "**Check your privilege**\n```please```\nYou don't need manners when talking to robots... " + emoji.robot)
-	discord.setCommand(/p.ease/i, msg => {
-		msg.channel.send(`No need to be polite. I'm just a robot ${emoji.robot}`)
 	})
 	// Echos message at someone
 	discord.addHelp('tell', "**Make me talk to someone**\n```tell Gecko he's gay```He is tho")
