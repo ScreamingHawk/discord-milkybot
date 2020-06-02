@@ -1,4 +1,5 @@
 const log = require('../util/logger')
+const emoji = require('../util/emoji')
 
 module.exports = (discord) => {
 	// Responds yes
