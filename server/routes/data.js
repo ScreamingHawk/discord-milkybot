@@ -30,5 +30,9 @@ module.exports = {
 				}))
 		socket.emit('data is', JSON.parse(prune(data)))
 	},
-	sendData: data => allSockets.emit('data is', JSON.parse(prune(data)))
+	sendData: data => {
+		if (allSockets){
+			allSockets.emit('data is', JSON.parse(prune(data)))
+		}
+	},
 }
