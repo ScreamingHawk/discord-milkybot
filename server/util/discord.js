@@ -105,7 +105,7 @@ discord.deletableMessage = async message => {
 
 if (!discordToken) {
 	// Spam this error to console
-	for (let i = 10; i --; ) log.error('NO DISCORD TOKEN!!!')
+	setInterval(() => log.error('NO DISCORD TOKEN!!!'), 3000);
 }
 
 module.exports = discord
