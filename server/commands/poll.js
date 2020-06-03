@@ -24,10 +24,10 @@ module.exports = (discord) => {
 				answers = pollSplit[1].split('/')
 			}
 			if (answers.length < 2){
-				answers = pollSplit[1].split('.')
+				answers = pollSplit[1].split(',')
 			}
 			if (answers.length < 2){
-				answers = pollSplit[1].split(',')
+				answers = pollSplit[1].split('.')
 			}
 			if (answers.length >= 2){
 				// Multiple choice
