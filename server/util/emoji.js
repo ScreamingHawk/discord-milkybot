@@ -8,6 +8,7 @@ module.exports = {
 	// Faces
 	drool: '🤤',
 	relief: '😌',
+	sad: '😞',
 	sob: '😭',
 	wink: '😉',
 	// Actions

@@ -46,7 +46,7 @@ module.exports = (discord) => {
 				.catch(err => {
 					log.error(err)
 					msg.reactions.find(r => r.emoji.name === emoji.drool).remove()
-					msg.channel.send(`Something went wrong... ${emoji.shrug}`)
+					msg.channel.send(`Couldn't find anything... ${emoji.sad}`)
 				})
 	})
 }
