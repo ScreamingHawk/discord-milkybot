@@ -18,7 +18,7 @@ module.exports = (discord) => {
 		msg.react(emoji.relief)
 	})
 	// Posts a random lewd
-	discord.setCommand(/(?:hentai|lewds?)\s?(\S*)/i, msg => {
+	discord.setCommand(/(?:hentai|lewds?)\s?(\S*)/i, async msg => {
 		if (!turnedOn){
 			msg.channel.send("I'm not ready...")
 			return
@@ -27,7 +27,7 @@ module.exports = (discord) => {
 			msg.channel.send(`I'm not posting lewds in a SFW channel...`)
 			return
 		}
-		msg.react(emoji.drool)
+		await msg.react(emoji.drool)
 		let tags = ''
 		if (msg.matches.length > 1 && msg.matches[1]){
 			tags = `&tags=${msg.matches[1]}`
