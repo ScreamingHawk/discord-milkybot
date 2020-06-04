@@ -46,4 +46,20 @@ module.exports = (discord) => {
 		discord.safeDeleteMessage(msg)
 		msg.channel.send(`${who} ${msg.matches[2]}`)
 	})
+	// Head pats
+	discord.addHelp('pat', "**Make me give someone a headpat**\n```pat Gecko```Uses an emoji called headpat if available")
+	discord.setCommand(/(?:^p(?:a|e)ts?) (.*)/i, msg => {
+		let who = msg.matches[1]
+		if (who.match(/^me$/i)){
+			who = `<@!${msg.author.id}>`
+		} else if (who.match(/^you/i) ||
+				who.match(new RegExp(`${msg.client.user.id}`))){
+			who = `<@!${msg.client.user.id}>`
+		} else {
+			who = `${who}`
+		}
+		const headpat = (msg.guild ? msg.guild.emojis.find(emoji => emoji.name == 'headpat') : null) || "pats"
+		discord.safeDeleteMessage(msg)
+		msg.channel.send(`*${headpat} ${who}*`)
+	})
 }
