@@ -75,6 +75,7 @@ discord.setCommand = (command, options, func) => {
 			noTagRequired: false,
 		}
 	}
+	log.debug(`Added command ${command}`)
 	commands.push({command, options, func})
 }
 
