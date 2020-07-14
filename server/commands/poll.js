@@ -39,6 +39,7 @@ module.exports = (discord) => {
 						answers.map((a, i) => `\n${emoji.number(i + 1)}: ${format.upperFirst(a.trim())}`).join('')
 				msg.channel.send("```" + poll + "```by " + msg.author).then(sent => {
 					discord.deletableMessage(sent)
+					discord.pinnableMessage(sent)
 					answers.map(async (_, i) => {
 						await sent.react(`${emoji.number(i + 1)}`)
 					})
@@ -50,6 +51,7 @@ module.exports = (discord) => {
 		discord.safeDeleteMessage(msg)
 		msg.channel.send("```" + formatQuestion(poll) + "```by " + msg.author).then(async sent => {
 			discord.deletableMessage(sent)
+			discord.pinnableMessage(sent)
 			await sent.react(emoji.thumbsUp)
 			await sent.react(emoji.thumbsDown)
 		})

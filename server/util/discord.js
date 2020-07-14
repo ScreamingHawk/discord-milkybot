@@ -104,6 +104,24 @@ discord.deletableMessage = async message => {
 	})
 }
 
+// Listen for react to delete message
+discord.pinnableMessage = async message => {
+	await message.react(emoji.pin)
+	const filter = (reaction, user) => reaction.emoji.name === emoji.pin && user.id !== message.author.id
+	message.awaitReactions(filter, { max: 1, time: 10000, errors: ['time'] })
+	.then(() => {
+		log.debug(`Message pinned`)
+		message.pin()
+	}).catch(err => {
+		log.error(`Error pinning pinnable: ${err}`)
+		try {
+			message.reactions.find(r => r.emoji.name === emoji.pin).remove()
+		} catch (err) {
+			// Ignore
+		}
+	})
+}
+
 if (!discordToken) {
 	// Spam this error to console
 	setInterval(() => log.error('NO DISCORD TOKEN!!!'), 3000);

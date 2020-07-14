@@ -15,6 +15,7 @@ module.exports = {
 	shrug: '🤷‍♀️',
 	// Things
 	eggplant: '🍆',
+	pin: '📌',
 	poop: '💩',
 	robot: '🤖',
 	tada: '🎉',
