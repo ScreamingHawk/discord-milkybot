@@ -6,7 +6,7 @@ module.exports = (discord) => {
 	discord.addHelp('say', '**Make me say something**\n```say Hello! ' + emoji.wave + '```')
 	discord.setCommand(/^say (.*)/i, msg => {
 		discord.safeDeleteMessage(msg)
-		msg.channel.send(`${msg.match[1]}`)
+		msg.channel.send(`${msg.matches[1]}`)
 	})
 	// Echos message at someone
 	discord.addHelp('tell', "**Make me talk to someone**\n```tell Gecko he's gay```He is tho")
