@@ -6,5 +6,6 @@ module.exports = discord => {
 	require("./reply.js")(discord)
 	require("./lewd.js")(discord)
 	require("./poll.js")(discord)
+	require("./define.js")(discord)
 	require("./downdetector.js")(discord)
 }

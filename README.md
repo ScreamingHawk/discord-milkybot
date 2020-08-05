@@ -65,6 +65,14 @@ poll Question? Answer 1, Answer 2
 
 Create a poll, supporting up to 10 answers.
 
+### Define
+
+```
+define word
+```
+
+Search for the definition of a word in the Merriam-Webster dictionary.
+
 ### Civ Down
 
 ```
@@ -93,7 +101,10 @@ For local use, create a `.env` file and populate the following values:
 
 ```
 DISCORD_TOKEN=
+DICTIONARYAPI_KEY=
 ```
+
+Note: `DICTIONARYAPI_KEY` is optional and can be obtained from [DictionaryApi](https://dictionaryapi.com).
 
 ### Start
 
@@ -116,6 +127,7 @@ Set up environment variables
 
 ```sh
 heroku config:set DISCORD_TOKEN=XXX
+heroku config:set DICTIONARYAPI_KEY=XXX
 ```
 
 Do the deployment
