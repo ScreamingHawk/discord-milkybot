@@ -10,7 +10,7 @@ module.exports = (discord) => {
 	})
 	// Replies to greetings
 	discord.setCommand(/^(hi|he.lo|sup|greetings)/i, msg => {
-		msg.channel.send(`Hello <@!${msg.author.id}>! ${emoji.wave}`)
+		msg.channel.send(`Hello <@${msg.author.id}>! ${emoji.wave}`)
 	})
 	// Set good morning command
 	discord.setCommand(/morning/i, msg => {

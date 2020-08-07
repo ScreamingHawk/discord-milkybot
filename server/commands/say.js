@@ -13,7 +13,7 @@ module.exports = (discord) => {
 	discord.setCommand(/^tell (\S*) (.*)/i, msg => {
 		let who = msg.matches[1]
 		if (who.match(/^me$/i)){
-			who = `<@!${msg.author.id}>,`
+			who = `<@${msg.author.id}>,`
 		} else {
 			who = `${who},`
 		}
@@ -33,7 +33,7 @@ module.exports = (discord) => {
 	discord.setCommand(/(?:^call )(\S*) (.*)/i, msg => {
 		let who = msg.matches[1]
 		if (who.match(/^me$/i)){
-			who = `<@!${msg.author.id}>, you are`
+			who = `<@${msg.author.id}>, you are`
 		} else if (who.match(/^you/i) || who.match(/^milky/i) ||
 				who.match(new RegExp(`${msg.client.user.id}`)) ||
 				who.match(/172630139878768640/)){
@@ -51,10 +51,10 @@ module.exports = (discord) => {
 	discord.setCommand(/(?:^p(?:a|e)ts?) (.*)/i, msg => {
 		let who = msg.matches[1]
 		if (who.match(/^me$/i)){
-			who = `<@!${msg.author.id}>`
+			who = `<@${msg.author.id}>`
 		} else if (who.match(/^you/i) ||
 				who.match(new RegExp(`${msg.client.user.id}`))){
-			who = `<@!${msg.client.user.id}>`
+			who = `<@${msg.client.user.id}>`
 		} else {
 			who = `${who}`
 		}

@@ -38,7 +38,7 @@ discord.initialise = next => {
 		// Content without tag
 		let c = msg.content
 		if (!isDm){
-			c = c.replace(new RegExp(`<@!${msg.client.user.id}>`), '')
+			c = c.replace(new RegExp(`<@${msg.client.user.id}>`), '')
 		}
 		c = c.trim()
 		const firstMention = msg.mentions.users.first()
