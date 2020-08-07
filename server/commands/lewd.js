@@ -38,14 +38,14 @@ module.exports = (discord) => {
 				.then(items => items.filter(p => p.rating !== "s")) // Only lewd
 				.then(items => items[Math.floor(Math.random()*items.length)]) // Pick one at random
 				.then(lewd => {
-					msg.reactions.find(r => r.emoji.name === emoji.drool).remove()
+					msg.reactions.cache.find(r => r.emoji.name === emoji.drool).remove()
 					msg.channel.send(lewd.file_url).then(sent => {
 						discord.deletableMessage(sent)
 					})
 				})
 				.catch(err => {
 					log.error(err)
-					msg.reactions.find(r => r.emoji.name === emoji.drool).remove()
+					msg.reactions.cache.find(r => r.emoji.name === emoji.drool).remove()
 					msg.channel.send(`Couldn't find anything... ${emoji.sad}`)
 				})
 	})
