@@ -7,6 +7,7 @@ module.exports = {
 	wave: '👋',
 	// Faces
 	drool: '🤤',
+	laugh: '😆',
 	relief: '😌',
 	sad: '😞',
 	sob: '😭',
