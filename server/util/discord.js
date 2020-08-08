@@ -95,7 +95,6 @@ discord.deletableMessage = async message => {
 		log.debug(`Message deleted`)
 		message.delete()
 	}).catch(err => {
-		log.error(`Error deleting deletable: ${err}`)
 		try {
 			message.reactions.cache.find(r => r.emoji.name === emoji.poop).remove()
 		} catch (err) {
@@ -113,7 +112,6 @@ discord.pinnableMessage = async message => {
 		log.debug(`Message pinned`)
 		message.pin()
 	}).catch(err => {
-		log.error(`Error pinning pinnable: ${err}`)
 		try {
 			message.reactions.cache.find(r => r.emoji.name === emoji.pin).remove()
 		} catch (err) {
