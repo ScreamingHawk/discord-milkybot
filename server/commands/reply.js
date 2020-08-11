@@ -1,7 +1,9 @@
 const log = require('../util/logger')
 const emoji = require('../util/emoji')
 
-module.exports = (discord) => {
+let laughOn = false
+
+module.exports = discord => {
 	// Responds yes
 	discord.setCommand(/you (awake|up)/i, msg => {
 		msg.channel.send(`Yup ${emoji.wink}`)
@@ -24,7 +26,13 @@ module.exports = (discord) => {
 		msg.channel.send(`No need to be polite. I'm just a robot ${emoji.robot}`)
 	})
 	// React to lol with a laugh
+	discord.setCommand(/lol/i, () => {
+		// Toggle
+		laughOn = !laughOn
+	})
 	discord.setCommand(/(?:^|\s)l(?:o+l)|(?:mf?a+o)/i, { noTagRequired: true }, msg => {
-		msg.react(emoji.laugh)
+		if (laughOn){
+			msg.react(emoji.laugh)
+		}
 	})
 }
