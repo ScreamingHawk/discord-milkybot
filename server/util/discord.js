@@ -8,7 +8,7 @@ const dataRoute = require('../routes/data')
 
 const discordToken = process.env.DISCORD_TOKEN
 
-const commands = []
+let commands = []
 const helpCommands = {}
 
 discord.initialise = next => {
@@ -77,6 +77,12 @@ discord.setCommand = (command, options, func) => {
 	}
 	log.debug(`Added command ${command}`)
 	commands.push({command, options, func})
+}
+
+// Helper for removing commands
+discord.removeCommand = command => {
+	log.debug(`Removing command ${command}`)
+	commands = commands.filter(c => String(c.command) != String(command))
 }
 
 discord.safeDeleteMessage = msg => {

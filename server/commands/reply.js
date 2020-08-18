@@ -26,13 +26,18 @@ module.exports = discord => {
 		msg.channel.send(`No need to be polite. I'm just a robot ${emoji.robot}`)
 	})
 	// React to lol with a laugh
-	discord.setCommand(/lol/i, () => {
+	toggleLol = () => {
+		lolRegex = /(?:^|\s)l(?:o+l|mf?a+o)/i
 		// Toggle
-		laughOn = !laughOn
-	})
-	discord.setCommand(/(?:^|\s)l(?:o+l|mf?a+o)/i, { noTagRequired: true }, msg => {
 		if (laughOn){
-			msg.react(emoji.laugh)
+			discord.setCommand(lolRegex, { noTagRequired: true }, msg => {
+				msg.react(emoji.laugh)
+			})
+		} else {
+			discord.removeCommand(lolRegex)
 		}
-	})
+		laughOn = !laughOn
+	}
+	discord.setCommand(/lol/i, toggleLol)
+	toggleLol()
 }
