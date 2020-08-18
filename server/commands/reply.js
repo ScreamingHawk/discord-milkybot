@@ -30,7 +30,7 @@ module.exports = discord => {
 		// Toggle
 		laughOn = !laughOn
 	})
-	discord.setCommand(/(?:^|\s)l(?:o+l)|(?:mf?a+o)/i, { noTagRequired: true }, msg => {
+	discord.setCommand(/(?:^|\s)l(?:o+l|mf?a+o)/i, { noTagRequired: true }, msg => {
 		if (laughOn){
 			msg.react(emoji.laugh)
 		}
