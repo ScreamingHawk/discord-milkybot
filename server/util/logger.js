@@ -4,7 +4,7 @@ const {
 	format
 } = require('winston')
 
-module.exports = logger = createLogger({
+module.exports = createLogger({
 	level: 'debug',
 	format: format.combine(
 		format.timestamp(),

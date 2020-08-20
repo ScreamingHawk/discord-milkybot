@@ -103,7 +103,7 @@ discord.deletableMessage = async message => {
 	}).catch(err => {
 		try {
 			message.reactions.cache.find(r => r.emoji.name === emoji.poop).remove()
-		} catch (err) {
+		} catch (_) {
 			// Ignore
 		}
 	})
@@ -120,7 +120,7 @@ discord.pinnableMessage = async message => {
 	}).catch(err => {
 		try {
 			message.reactions.cache.find(r => r.emoji.name === emoji.pin).remove()
-		} catch (err) {
+		} catch (_) {
 			// Ignore
 		}
 	})

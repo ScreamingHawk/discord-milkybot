@@ -1,4 +1,3 @@
-const log = require('../util/logger')
 const emoji = require('../util/emoji')
 
 let laughOn = false
@@ -26,8 +25,8 @@ module.exports = discord => {
 		msg.channel.send(`No need to be polite. I'm just a robot ${emoji.robot}`)
 	})
 	// React to lol with a laugh
-	toggleLol = () => {
-		lolRegex = /(?:^|\s)l(?:o+l|mf?a+o)/i
+	const toggleLol = () => {
+		const lolRegex = /(?:^|\s)l(?:o+l|mf?a+o)/i
 		// Toggle
 		if (laughOn){
 			discord.setCommand(lolRegex, { noTagRequired: true }, msg => {

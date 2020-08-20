@@ -58,7 +58,7 @@ module.exports = (discord) => {
 		} else {
 			who = `${who}`
 		}
-		const headpat = (msg.guild ? msg.guild.emojis.cache.find(emoji => emoji.name == 'headpat') : null) || "pats"
+		const headpat = (msg.guild ? msg.guild.emojis.cache.find(e => e.name == 'headpat') : null) || "pats"
 		discord.safeDeleteMessage(msg)
 		msg.channel.send(`*${headpat} ${who}*`)
 	})
