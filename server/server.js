@@ -28,6 +28,12 @@ app.get('*', (req, res)=>{
 // Log in
 discord.initialise(() => {
 	require('./commands')(discord)
+
+	if (process.env.DISABLE_UI === "true"){
+		log.info("Starting without front end")
+		return
+	}
+
 	io.on('connection', socket => {
 		require('./routes')(io, socket, discord)
 	})

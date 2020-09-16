@@ -106,6 +106,8 @@ DICTIONARYAPI_KEY=
 
 Note: `DICTIONARYAPI_KEY` is optional and can be obtained from [DictionaryApi](https://dictionaryapi.com).
 
+Add `DISABLE_UI=true` to disable the front end.
+
 ### Start
 
 Single command, this enables *watching*
