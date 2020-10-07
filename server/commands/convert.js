@@ -82,6 +82,21 @@ module.exports = discord => {
 				unitTo = "lb"
 				numTo = Math.round(numFrom * 2.205)
 				break
+			case "degree":
+			case "celcius":
+			case "c":
+				unitFrom = "C"
+				unitTo = "F"
+				numTo = Math.round(numFrom * 9 / 5) + 32
+				break
+			case "farenheit":
+			case "f":
+				unitFrom = "F"
+				unitTo = "C"
+				numTo = Math.round((numFrom - 32) * 5 / 9)
+				break
+			default:
+				msg.channel.send(`IDK how to convert that... ${emoji.shrug}`)
 		}
 		msg.channel.send(`${numFrom} ${unitFrom} = ${numTo} ${unitTo}`)
 	})
